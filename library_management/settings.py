@@ -31,7 +31,9 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = ['https://nextgenlibrary.onrender.com']
 
+import os
 
+PORT = os.getenv('PORT', 8000)
 # Application definition
 
 INSTALLED_APPS = [
