@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="Dummy Banking System" />
+        <title>
+            {% block head_title %}Library Management{% endblock %}
+        </title>
+        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+
+        {% block head_extra %}{% endblock %}
+        <style>
+            
+            #id_old_password,#id_new_password1,#id_new_password2{
+                width: 100%;
+                outline: none;
+                border: 1px solid #5f5757;
+                padding: 5px 10px;
+                border-radius: 5px;
+            }
+        </style>
+    </head>
+    <body class="bg-gray-100">
+        {% include 'navbar.html' %}
+        {% block body %}
+            <div class="lg:container lg:mx-auto" id="main">
+                {% include 'messages.html' %}
+                {% block content %}
+                {% endblock %}
+            </div>
+        {% include 'footer.html' %}
+        {% endblock %}
+
+
+<footer class="footer bg-blue-600 text-white ">
+    <div class="container mx-auto px-6">
+        <div class="mt-5 flex flex-col items-center">
+            <div class="sm:w-2/3 text-center py-0 pb-2">
+                <p class="text-md text-white font-bold mb-2">
+                    © {% now "Y" %} All Rights Reserved by Nahid Usha
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+    </body>
+</html>

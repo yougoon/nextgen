@@ -1,0 +1,49 @@
+{% load static %}
+
+<nav class="flex items-center justify-between flex-wrap bg-blue-300 rounded-lg p-6 px-10 border-b shadow-lg">
+    <div class="h-25 w-25 items-center flex-shrink-0 text-white mr-5">
+        <a href="/" class="w-25 h-25 flex items-center justify-center border border-3 border-blue-200 rounded-lg bg-blue-500 text-white px-4 py-2">
+            Next Gen E-Library
+        </a>
+    </div>
+    
+
+    <div class="block lg:hidden">
+        <button class="flex items-center px-3 py-2 border rounded text-blue-900 border-blue-900 hover:text-white hover:bg-blue-900">
+            <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <title>Menu</title>
+                <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+            </svg>
+        </button>
+    </div>
+
+    <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+        {% if request.user.is_authenticated %}
+            <div class="text-md lg:flex-grow">
+                <a href="{% url 'deposit_money' %}" class="block mt-4 lg:inline-block lg:mt-0 text-blue-900 hover:text-blue-700 hover:font-semibold mr-6">
+                    Add Money
+                </a>
+            </div>
+
+            <div class="flex w-auto">
+                <div class="text-blue-900 my-auto font-semibold px-5">
+                    Welcome, {{ request.user.first_name }} (balance: {{ request.user.account.balance }})
+                </div>
+
+                <a href="{% url 'profile' %}" class="mx-2 inline-block font-medium text-sm px-4 py-2 leading-none bg-blue-900 rounded-lg text-white border-white hover:border-transparent hover:text-white hover:bg-blue-700 mt-4 lg:mt-0">Profile</a>
+                <form action="{% url 'logout' %}" method="post" class="inline">
+                    {% csrf_token %}
+                    <button type="submit" class="mx-2 inline-block font-medium text-sm px-4 py-2 leading-none bg-blue-900 rounded-lg text-white border-white hover:border-transparent hover:text-white hover:bg-blue-700 mt-4 lg:mt-0">Logout</button>
+                </form>
+            </div>
+        {% else %}
+            <div class="text-md lg:flex-grow"></div>
+            <div>
+                <a href="{% url 'login' %}" class="mr-2 inline-block font-medium text-sm px-4 py-2 leading-none bg-blue-900 rounded-lg text-white border-white hover:border-transparent hover:text-white hover:bg-blue-700 mt-4 lg:mt-0">Login</a>
+            </div>
+            <div>
+                <a href="{% url 'register' %}" class="inline-block font-medium text-sm px-4 py-2 leading-none bg-blue-900 rounded-lg text-white border-white hover:border-transparent hover:text-white hover:bg-blue-700 mt-4 lg:mt-0">Register</a>
+            </div>
+        {% endif %}
+    </div>
+</nav>
